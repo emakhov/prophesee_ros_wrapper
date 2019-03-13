@@ -39,7 +39,8 @@ include_directories(
 )
 
 # Prophesee Publisher
-add_executable(prophesee_ros_publisher
+add_executable(
+    prophesee_ros_publisher
     src/prophesee_ros_publisher.cpp
     src/log_tone_mapper.cpp
 )
@@ -50,8 +51,14 @@ target_link_libraries(
     ${PROPHESEE_DRIVER_LIBRARIES}
 )
 
+add_dependencies(
+    prophesee_ros_publisher
+    prophesee_event_msgs_generate_messages_cpp
+)
+
 # Prophesee Viewer
-add_executable(prophesee_ros_viewer
+add_executable(
+    prophesee_ros_viewer
     src/prophesee_ros_viewer.cpp
     src/cd_frame_generator.cpp
     src/log_tone_mapper.cpp
@@ -61,4 +68,28 @@ target_link_libraries(
     prophesee_ros_viewer
     ${catkin_LIBRARIES}
     ${PROPHESEE_DRIVER_LIBRARIES}
+)
+
+add_dependencies(
+    prophesee_ros_viewer
+    prophesee_event_msgs_generate_messages_cpp
+)
+
+# Prophesee Renderer
+add_executable(
+    prophesee_ros_renderer
+    src/prophesee_ros_renderer.cpp
+    src/cd_frame_generator.cpp
+    src/log_tone_mapper.cpp
+)
+
+target_link_libraries(
+    prophesee_ros_renderer
+    ${catkin_LIBRARIES}
+    ${PROPHESEE_DRIVER_LIBRARIES}
+)
+
+add_dependencies(
+    prophesee_ros_renderer
+    prophesee_event_msgs_generate_messages_cpp
 )

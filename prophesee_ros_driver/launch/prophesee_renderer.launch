@@ -1,0 +1,9 @@
+<launch>
+    <node pkg="prophesee_ros_driver" type="prophesee_ros_renderer" name="prophesee_ros_renderer" respawn="false" output="screen">
+        <param name="camera_name" value="camera" />
+        <param name="publish_cd" value="true" />
+
+        <!-- Time interval to display events up to the current time, in us -->
+        <param name="display_accumulation_time" value="5000" />
+    </node>
+</launch>
